@@ -10,11 +10,11 @@
     <ul class="navbar-nav mr-auto">
       
       <li class="nav-item">
-        <a class="nav-link" href="#"><span class="fa fa-home"></span></a>
+        <router-link class="nav-link" to="/"><span class="fa fa-home"></span></router-link>
       </li>
       
       <li class="nav-item">
-        <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        <router-link class="nav-link" to="/produtos"  >Produtos</router-link>
       </li>
     </ul>
     

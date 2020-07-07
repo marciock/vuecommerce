@@ -2,10 +2,10 @@
 
     <div class="col" >
         <div class="text-center">
-            <a href="">
+            <router-link :to="url">
                 <img :src="icon" style="width: 128px;height:auto;" >
                 <h5 style="margin-top: 0;">{{title}}</h5>
-            </a>
+            </router-link>
         </div>
     </div>
     
@@ -13,7 +13,7 @@
 <script>
 export default {
     name:'Icons',
-    props:['icon','title']
+    props:['icon','title','url']
     
 }
 </script>
