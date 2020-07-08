@@ -22,8 +22,8 @@ export default {
         return{
             menu:[
                     {'title':'Produtos','icon':require('@/assets/icons/produtos.svg'),'url':'/produtos'},
-                    {'title':'Tipos','icon':require('@/assets/icons/marca.svg'),'url':'/tipos'},
-                    {'title':'Garçons','icon':require('@/assets/icons/imagens.svg'),'url':'/garcons'},
+                    {'title':'Marcas','icon':require('@/assets/icons/marca.svg'),'url':'/marcas'},
+                    {'title':'Usuarios','icon':require('@/assets/icons/imagens.svg'),'url':'/usuarios'},
                 
                 ] 
         }
