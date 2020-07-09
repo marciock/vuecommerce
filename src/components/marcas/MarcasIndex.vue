@@ -15,7 +15,7 @@
                     <td>{{tb.marca}}</td> 
                     <td>{{tb.descricao}}</td> 
                     
-                    <td><ButtonDel v-bind:tbId="tb.id_marca" /></td>
+                    <td><ButtonDel v-bind:tbId="tb.id" /></td>
                     <td><ButtonEdit link="/tete" /></td>
                     
                 </tr>
@@ -43,12 +43,13 @@ export default {
     components:{ButtonPlus,ButtonDel,ButtonEdit},
     data:()=>{
         return{
-            table:''
+            table:'',
+            
         }
     },
     methods:{
         showData(){
-            axios.get('http://192.168.1.103/vuecomerceserver/controllers/marcas/show.php')
+            axios.get('http://localhost/vuecommerceserver/marca_show')
             .then(response=>{
                 console.log(response.data);
                 this.table=response.data;
@@ -56,7 +57,7 @@ export default {
             .catch(error=>{console.log(error)})
         }
     },
-    created(){
+    mounted(){
         this.showData();
     }
     

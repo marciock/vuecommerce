@@ -33,7 +33,7 @@ export default {
         salvar(){
 
             let marcas=this.marcas;
-            axios.post('http://localhost/vuecomerceserver/controllers/marcas/insert.php',marcas)
+            axios.post('http://localhost/vuecommerceserver/marca_insert',marcas)
             .then((res)=>{
                 console.log(res.data)
                 //console.log(marcas)
