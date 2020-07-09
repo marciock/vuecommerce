@@ -23,7 +23,7 @@
                 </div>  
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
-                    <button type="button" class="btn btn-primary" >Sim</button>
+                    <button type="button" class="btn btn-primary" v-on:click="deleteId()" >Sim</button>
 
                 </div> 
             </div>
@@ -35,6 +35,8 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
+
 export default {
     name:'ButtonDel',
     data:()=>{
@@ -48,6 +50,16 @@ export default {
         createModal(value){
             const modal=document.getElementById('conteudo');
             modal.innerHTML=value;
+        },
+        deleteId(){
+            this.result=`http://localhost/vuecomerceserver/controllers/marcas/delete.php?id=${this.tbId}`;
+            console.log(this.result)
+
+            axios.get(this.results).then(
+                response=>{
+                    console.log(response)
+                }
+            )
         }
     }
     

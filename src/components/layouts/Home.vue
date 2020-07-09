@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row">
-         <Icons v-for="m in menu" v-bind:key="m" :icon="m.icon" :title="m.title" :url="m.url"></Icons>
+         <Icons v-for="(m,index) in menu" v-bind:key="index" :icon="m.icon" :title="m.title" :url="m.url"></Icons>
       </div>
     </div>
 </template>

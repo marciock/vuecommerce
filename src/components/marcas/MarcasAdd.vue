@@ -17,6 +17,8 @@
     </div>
 </template>
 <script>
+
+import axios from 'axios';
 export default {
     name:'MarcasAdd',
     data:()=>{
@@ -29,7 +31,17 @@ export default {
     },
     methods:{
         salvar(){
-            console.log(this.marcas.descricao)
+
+            let marcas=this.marcas;
+            axios.post('http://localhost/vuecomerceserver/controllers/marcas/insert.php',marcas)
+            .then((res)=>{
+                console.log(res.data)
+                //console.log(marcas)
+            })
+            .catch((error)=>{
+                console.log(error)
+                //console.log(marcas.marca)
+            })
         }
     }
 }
