@@ -1,13 +1,13 @@
 <template>
     <div>
-        <form v-on:submit.prevent="submit">
+        <form v-on:submit.prevent="submit" >
         <div class="form-group">
             <label for="marca">Marca</label>
-            <input type="text" id="tipo" class="form-control" v-model="table.marca"  >
+            <input type="text" id="tipo" class="form-control"   v-model="schema.marca">
         </div>
          <div class="form-group">
             <label for="descricao">Descrição</label>
-            <textarea id="descricao" class="form-control" rows="5" v-model="table.descricao" ></textarea>
+            <textarea id="descricao" class="form-control" rows="5"  v-model="schema.descricao" ></textarea>
         </div>
          <div class="form-group">
            <button type="submit"  class="btn btn-outline-success"  >Salvar</button>
@@ -29,24 +29,37 @@ export default {
                 marca:'',
                 descricao:''
             }
+                
         }
     },
-    props:['Id'],
     computed:{
         ...mapState('crud',['table','toast']),
+        
     },
     methods:{
        
-       ...mapActions('crud',['saveAction','editAction']),
+       ...mapActions('crud',['saveEditAction','editAction']),
+       
        submit(){
-           this.saveAction({item:this.schema,url:'marca_save'})
+           this.saveEditAction({item:this.schema,url:'marca_up'})
            this.$router.push('/marcas')
        },
-    mounted() {
-        this.editAction({item:this.toast.item,url:'marca_edit'})
+       getForm(){
+           /*this.schema.marca=this.table.marca;
+           
+           this.schema.descricao=this.table.descricao;*/
+
+           this.schema=this.table;
+       }
     },
-       
+    mounted() {
+        const data={'id':this.toast.id,'url':'marca_edit'}
+        this.editAction(data)
+        this.getForm()
+        console.log('montou')
+    },
         
-    }
+        
+   
 }
 </script>

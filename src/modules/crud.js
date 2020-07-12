@@ -70,14 +70,28 @@ export default {
                 })
                 
             },
-            editAction({commit},params){
-                const item=params.item;
-                const url=params.url;
+            editAction({commit},payload){
+                const id=payload.id;
+                const url=payload.url;
 
-                Vue.http.get(url,{params:{item}}).then((res)=>{
+                Vue.http.get(url,{params:{id}}).then((res)=>{
+                    console.log(res.body);
                     commit('mutEdit',res.body);
                 })
-            }
+            },
+            saveEditAction(context,schema){
+                const id=schema.item.id;
+                const item=schema.item;
+                const url=schema.url;
+                Vue.http.post(url,item,{params:{id}}).then((res)=>{
+                    console.log(res.body);
+
+                   
+                    
+                })
+                
+            },      
+           
             
             
 

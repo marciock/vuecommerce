@@ -14,7 +14,9 @@ export default {
     methods:{
         ...mapActions('crud',['actToast']),
         go(){
-            this.actToast({'item':this.Id});
+            const id=this.Id;
+            
+            this.actToast({'id':id});
             this.$router.push(this.link);
         }
     }
