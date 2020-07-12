@@ -10,41 +10,40 @@
                 </div> 
                 <div class="modal-body" id="conteudo" >
                    
-                   
+                   {{toast.id}}
                     
                 </div>  
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
-                    <button type="button" class="btn btn-primary"  v-on:click="deleteId" >Sim</button>
-
+                    <button type="button" class="btn btn-primary"  @click="removeAction({item:toast.id,url:'marca_del'})" id="sim"  data-dismiss="modal">Sim</button>
                 </div> 
             </div>
          </div>
         </div>
 </template>
 <script>
-import axios from 'axios';
+import {mapState} from 'vuex';
+import {mapActions} from 'vuex';
+//import {mapMutations} from 'vuex';
+
 
 export default {
     name:'Modal',
-    props:['Id'],
+   
     methods:{
-    deleteId(value){
-            
-          //  console.log(this.result)
-            let result=value.del;
-
-            console.log(result);
-            axios.delete('http://localhost/vuecommerceserver/controllers/marcas/delete.php',{data:result}).then(
-                (response)=>{
-                    console.log(response.data)
-                }
-            )
-            .catch(error=>{
-                console.log(error)
-            })
-        }
+        //...mapMutations('marcas',['hidratation']),
+        ...mapActions('crud',['removeAction']),
+       
+    
     },
+    computed:{
+        ...mapState('crud',['toast','table'])
+    },
+    mounted(){
+        
+       // this.updateView()
+        
+    }
     
 }
 

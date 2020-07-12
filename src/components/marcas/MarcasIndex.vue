@@ -10,13 +10,13 @@
                 
             </thead>
             <tbody >
-                <tr v-for="(tb,index) in table" v-bind:key="index">
+                <tr  v-for="item of  table" :key="item.id" >
                     
-                    <td>{{tb.marca}}</td> 
-                    <td>{{tb.descricao}}</td> 
+                    <td >{{item.marca}}</td> 
+                   
                     
-                    <td><ButtonDel v-bind:tbId="tb.id" /></td>
-                    <td><ButtonEdit link="/tete" /></td>
+                    <td><ButtonDel v-bind:Id="item.id" v-bind:nameRecord="item.marca"/></td>
+                    <td><ButtonEdit link="/marcas_edit" v-bind:Id="item.id" /></td>
                     
                 </tr>
 
@@ -25,40 +25,40 @@
         </table>
 
 
-
+        <button type="button" class="btn btn-outline-warning" v-on:click="show()">vai</button>
 
         <ButtonPlus link="/marcas_add"></ButtonPlus>
     </div>
 </template>
 <script>
-import axios from 'axios';
+
 
 import ButtonPlus from '../layouts/ButtonPlus';
 import ButtonDel from '../layouts/ButtonDel';
 import ButtonEdit from '../layouts/ButtonEdit';
 
 
+import {mapState} from 'vuex';
+
+import {mapActions} from 'vuex';
+
 export default {
     name:'MarcasIndex',
     components:{ButtonPlus,ButtonDel,ButtonEdit},
-    data:()=>{
-        return{
-            table:'',
-            
-        }
+   
+    computed:{
+     ...mapState('crud',['table'])
     },
     methods:{
-        showData(){
-            axios.get('http://localhost/vuecommerceserver/marca_show')
-            .then(response=>{
-                console.log(response.data);
-                this.table=response.data;
-                })
-            .catch(error=>{console.log(error)})
-        }
+      
+       ...mapActions('crud',['show','updateView',])
+
     },
     mounted(){
-        this.showData();
+        this.show('marca_show')
+    },
+    updated(){
+        this.updateView('marca_show')
     }
     
    

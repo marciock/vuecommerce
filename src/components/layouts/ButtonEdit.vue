@@ -1,13 +1,22 @@
 <template>
     <div>
-        <router-link type="button" class="btn btn-outline-success"  data-toggle="modal"  data-target="#modal"  v-bind:to="link">
+        <button type="button" class="btn btn-outline-success" @click="go()"  >
             <span class="fa fa-pencil"></span>
-        </router-link>
+        </button>
     </div>
 </template>
 <script>
+import {mapActions} from 'vuex';
+
 export default {
     name:'ButtonEdit',
-    props:['link']
+    props:['link','Id'],
+    methods:{
+        ...mapActions('crud',['actToast']),
+        go(){
+            this.actToast({'item':this.Id});
+            this.$router.push(this.link);
+        }
+    }
 }
 </script>
