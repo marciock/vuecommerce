@@ -2,7 +2,7 @@
     <div>
         
         <button type="button" class="btn btn-outline-warning"  data-toggle="modal" 
-          data-target="#modal"  id="del" @click="actToast({'id':Id,'name':nameRecord})"  >
+          data-target="#modal"  id="del" @click="actToast({'id':Id,'name':nameRecord,'url':url})"  >
             <span class="fa fa-trash"></span>
         </button>
         
@@ -25,7 +25,7 @@ export default {
         }
     },
     
-    props:['Id','nameRecord'],
+    props:['Id','nameRecord','url'],
 
     methods:{
         ...mapActions('crud',['actToast']),

@@ -4,12 +4,17 @@ export default {
         namespaced:true,
         state:{
             table:[],
+            tableEdit:[],
             toast:{},
             
         },
         mutations:{
-            hidratation(state,marcasAction){
-                state.table=marcasAction
+            hidratation(state,showAction){
+                
+                state.table=showAction
+            },
+            rehidratation(state,reAction){
+                state.tableEdit=reAction
             },
             mutToast(state,toast){
                 state.toast=toast;
@@ -19,7 +24,8 @@ export default {
             },
             mutEdit(state,editAction){
                 state.table=editAction
-            }
+            },
+           
     
 
         },
@@ -27,17 +33,28 @@ export default {
             show: async ({commit},url)=>{
 
                 const URL=url;
-                Vue.http.get(URL).then((res)=>{
-                    console.log(res.body)
+                await  Vue.http.get(URL).then((res)=>{
+                    //console.log(res.body)
                  commit('hidratation',res.body);
                     
                 });
                 
             },
+            reAction: async ({commit},url)=>{
+
+                const URL=url;
+                await  Vue.http.get(URL).then((res)=>{
+                    //console.log(res.body)
+                 commit('rehidratation',res.body);
+                    
+                });
+                
+            },
+            
             updateView: async ({commit},url)=>{
 
                 const URL=url;  
-                Vue.http.get(URL).then((res)=>{
+                await Vue.http.get(URL).then((res)=>{
                    // console.log(res.body)
                  commit('mutUpdate',res.body)
                     
@@ -47,12 +64,12 @@ export default {
             actToast({commit},item){
                 commit('mutToast',item);
             },
-            removeAction(context,payload){
+            removeAction: async (context,payload)=>{
                 const item=payload.item;
                 const url=payload.url;
 
                 //console.log(formData)
-                Vue.http.post(url,item,{body:{id:item}}).then((res)=>{
+                await  Vue.http.post(url,item,{body:{id:item}}).then((res)=>{
 
                     console.log(res);
                     
@@ -65,30 +82,27 @@ export default {
                 Vue.http.post(url,item).then((res)=>{
                     console.log(res.body);
 
-                   
                     
                 })
                 
             },
-            editAction({commit},payload){
+            editAction: async ({commit},payload)=>{
                 const id=payload.id;
                 const url=payload.url;
 
-                Vue.http.get(url,{params:{id}}).then((res)=>{
-                    console.log(res.body);
+                await Vue.http.get(url,{params:{id}}).then((res)=>{
+                     console.log(res.body);
                     commit('mutEdit',res.body);
                 })
             },
-            saveEditAction(context,schema){
+            saveEditAction: async (context,schema)=>{
                 const id=schema.item.id;
                 const item=schema.item;
                 const url=schema.url;
-                Vue.http.post(url,item,{params:{id}}).then((res)=>{
-                    console.log(res.body);
-
-                   
-                    
-                })
+              await  Vue.http.post(url,item,{params:{id}}).then((res)=>{
+                  console.log(res.body) 
+              });                
+               
                 
             },      
            

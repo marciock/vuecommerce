@@ -13,9 +13,10 @@
                 <tr  v-for="item of  table" :key="item.id" >
                     
                     <td >{{item.marca}}</td> 
+                    <td >{{item.descricao}}</td> 
                    
                     
-                    <td><ButtonDel v-bind:Id="item.id" v-bind:nameRecord="item.marca"/></td>
+                    <td><ButtonDel v-bind:Id="item.id" v-bind:nameRecord="item.marca" url="marca_del"/></td>
                     <td><ButtonEdit link="/marcas_edit" v-bind:Id="item.id" /></td>
                     
                 </tr>
@@ -25,7 +26,7 @@
         </table>
 
 
-        <button type="button" class="btn btn-outline-warning" v-on:click="show()">vai</button>
+       
 
         <ButtonPlus link="/marcas_add"></ButtonPlus>
     </div>
@@ -54,7 +55,7 @@ export default {
        ...mapActions('crud',['show','updateView',])
 
     },
-    mounted(){
+    created(){
         this.show('marca_show')
     },
     updated(){

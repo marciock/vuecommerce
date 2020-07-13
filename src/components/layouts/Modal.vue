@@ -15,7 +15,7 @@
                 </div>  
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
-                    <button type="button" class="btn btn-primary"  @click="removeAction({item:toast.id,url:'marca_del'})" id="sim"  data-dismiss="modal">Sim</button>
+                    <button type="button" class="btn btn-primary"  @click="removeAction({item:toast.id,url:toast.url})" id="sim"  data-dismiss="modal">Sim</button>
                 </div> 
             </div>
          </div>

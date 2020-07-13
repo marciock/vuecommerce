@@ -15,9 +15,11 @@ export default {
         ...mapActions('crud',['actToast']),
         go(){
             const id=this.Id;
-            
+           // console.log(id)
+            const link=this.link
+           // console.log(id);
             this.actToast({'id':id});
-            this.$router.push(this.link);
+            this.$router.push(link);
         }
     }
 }
