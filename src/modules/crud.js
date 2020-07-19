@@ -30,20 +30,20 @@ export default {
 
         },
         actions:{
-            show: async ({commit},url)=>{
+            show({commit},url){
 
                 const URL=url;
-                await  Vue.http.get(URL).then((res)=>{
+                  Vue.http.get(URL).then((res)=>{
                     //console.log(res.body)
                  commit('hidratation',res.body);
                     
                 });
                 
             },
-            reAction: async ({commit},url)=>{
+            reAction({commit},url){
 
                 const URL=url;
-                await  Vue.http.get(URL).then((res)=>{
+                  Vue.http.get(URL).then((res)=>{
                     //console.log(res.body)
                  commit('rehidratation',res.body);
                     
@@ -51,10 +51,9 @@ export default {
                 
             },
             
-            updateView: async ({commit},url)=>{
-
+            updateView({commit},url){
                 const URL=url;  
-                await Vue.http.get(URL).then((res)=>{
+                 Vue.http.get(URL).then((res)=>{
                    // console.log(res.body)
                  commit('mutUpdate',res.body)
                     
@@ -64,12 +63,12 @@ export default {
             actToast({commit},item){
                 commit('mutToast',item);
             },
-            removeAction: async (context,payload)=>{
+            removeAction(context,payload){
                 const item=payload.item;
                 const url=payload.url;
 
                 //console.log(formData)
-                await  Vue.http.post(url,item,{body:{id:item}}).then((res)=>{
+                  Vue.http.post(url,item,{body:{id:item}}).then((res)=>{
 
                     console.log(res);
                     
@@ -86,20 +85,20 @@ export default {
                 })
                 
             },
-            editAction: async ({commit},payload)=>{
+            editAction({commit},payload){
                 const id=payload.id;
                 const url=payload.url;
 
-                await Vue.http.get(url,{params:{id}}).then((res)=>{
+                 Vue.http.get(url,{params:{id}}).then((res)=>{
                      console.log(res.body);
                     commit('mutEdit',res.body);
                 })
             },
-            saveEditAction: async (context,schema)=>{
+            saveEditAction(context,schema){
                 const id=schema.item.id;
                 const item=schema.item;
                 const url=schema.url;
-              await  Vue.http.post(url,item,{params:{id}}).then((res)=>{
+                Vue.http.post(url,item,{params:{id}}).then((res)=>{
                   console.log(res.body) 
               });                
                
